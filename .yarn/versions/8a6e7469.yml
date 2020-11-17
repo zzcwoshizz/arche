@@ -1,0 +1,10 @@
+releases:
+  "@arche/abstract-wallet": prerelease
+  "@arche/extension-wallet": prerelease
+  "@arche/types": prerelease
+
+declined:
+  - "@arche/example"
+
+undecided:
+  - arche
