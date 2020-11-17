@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.base.json",
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@arche/abstract-wallet": ["packages/abstract-wallet/src"],
+      "@arche/abstract-wallet/*": ["packages/abstract-wallet/src/*"],
+      "@arche/extension-wallet": ["packages/extension-wallet/src"],
+      "@arche/extension-wallet/*": ["packages/extension-wallet/src/*"],
+      "@arche/types": ["packages/types/src"],
+      "@arche/types/*": ["packages/types/src/*"]
+    },
+    "skipLibCheck": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "module": "CommonJS"
+  }
+}

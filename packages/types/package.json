@@ -1,0 +1,11 @@
+{
+  "name": "@arche/types",
+  "version": "0.0.0",
+  "description": "A wallet base on polkadot",
+  "main": "dist/index.js",
+  "author": "Patract Labs",
+  "license": "MIT",
+  "dependencies": {
+    "eventemitter3": "^4.0.7"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "@arche/extension-wallet",
+  "version": "0.0.0",
+  "description": "A wallet base on polkadot",
+  "main": "dist/index.js",
+  "author": "Patract Labs",
+  "license": "MIT"
+}
