@@ -2,7 +2,7 @@
   "name": "@arche-polkadot/extension-wallet",
   "version": "0.0.1-1",
   "description": "A wallet base on polkadot",
-  "main": "dist/index.js",
+  "main": "index.js",
   "author": "Patract Labs",
   "license": "MIT",
   "dependencies": {

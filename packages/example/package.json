@@ -8,7 +8,7 @@
   "author": "Patract Labs",
   "homepage": "http://.",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {},
   "peerDependencies": {
     "react": ">=16.8",

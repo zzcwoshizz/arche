@@ -1,6 +1,6 @@
 import ExtensionWallet from '@arche-polkadot/extension-wallet';
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import { formatBalance, stringToHex } from '@polkadot/util';
+import { stringToHex } from '@polkadot/util';
 import React from 'react';
 
 const extension = new ExtensionWallet('example');
