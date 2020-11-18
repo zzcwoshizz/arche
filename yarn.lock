@@ -5,11 +5,11 @@ __metadata:
   version: 4
   cacheKey: 7
 
-"@arche/abstract-wallet@workspace:packages/abstract-wallet":
+"@arche/abstract-wallet@^0.0.1-1, @arche/abstract-wallet@workspace:packages/abstract-wallet":
   version: 0.0.0-use.local
   resolution: "@arche/abstract-wallet@workspace:packages/abstract-wallet"
   dependencies:
-    "@arche/types": "workspace:packages/types"
+    "@arche/types": ^0.0.1-1
     eventemitter3: ^4.0.7
   languageName: unknown
   linkType: soft
@@ -43,12 +43,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arche/extension-wallet@workspace:packages/extension-wallet"
   dependencies:
-    "@arche/abstract-wallet": "workspace:packages/abstract-wallet"
+    "@arche/abstract-wallet": ^0.0.1-1
     "@polkadot/extension-dapp": ^0.34.1
   languageName: unknown
   linkType: soft
 
-"@arche/types@workspace:packages/types":
+"@arche/types@^0.0.1-1, @arche/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@arche/types@workspace:packages/types"
   dependencies:
