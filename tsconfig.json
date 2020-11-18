@@ -7,12 +7,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@arche/abstract-wallet": ["packages/abstract-wallet/src"],
-      "@arche/abstract-wallet/*": ["packages/abstract-wallet/src/*"],
-      "@arche/extension-wallet": ["packages/extension-wallet/src"],
-      "@arche/extension-wallet/*": ["packages/extension-wallet/src/*"],
-      "@arche/types": ["packages/types/src"],
-      "@arche/types/*": ["packages/types/src/*"]
+      "@arche-polkadot/abstract-wallet": ["packages/abstract-wallet/src"],
+      "@arche-polkadot/abstract-wallet/*": ["packages/abstract-wallet/src/*"],
+      "@arche-polkadot/extension-wallet": ["packages/extension-wallet/src"],
+      "@arche-polkadot/extension-wallet/*": ["packages/extension-wallet/src/*"],
+      "@arche-polkadot/types": ["packages/types/src"],
+      "@arche-polkadot/types/*": ["packages/types/src/*"]
     },
     "skipLibCheck": true,
     "typeRoots": [

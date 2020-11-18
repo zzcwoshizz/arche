@@ -141,9 +141,9 @@ function createWebpack(ENV, context) {
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {
-        '@arche/abstract-wallet': path.resolve(__dirname, '../abstract-wallet/src'),
-        '@arche/extension-wallet': path.resolve(__dirname, '../extension-wallet/src'),
-        '@arche/types': path.resolve(__dirname, '../types/src')
+        '@arche-polkadot/abstract-wallet': path.resolve(__dirname, '../abstract-wallet/src'),
+        '@arche-polkadot/extension-wallet': path.resolve(__dirname, '../extension-wallet/src'),
+        '@arche-polkadot/types': path.resolve(__dirname, '../types/src')
       }
     },
     watch: !isProd,

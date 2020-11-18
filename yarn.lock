@@ -5,18 +5,18 @@ __metadata:
   version: 4
   cacheKey: 7
 
-"@arche/abstract-wallet@^0.0.1-1, @arche/abstract-wallet@workspace:packages/abstract-wallet":
+"@arche-polkadot/abstract-wallet@^0.0.1-1, @arche-polkadot/abstract-wallet@workspace:packages/abstract-wallet":
   version: 0.0.0-use.local
-  resolution: "@arche/abstract-wallet@workspace:packages/abstract-wallet"
+  resolution: "@arche-polkadot/abstract-wallet@workspace:packages/abstract-wallet"
   dependencies:
-    "@arche/types": ^0.0.1-1
+    "@arche-polkadot/types": ^0.0.1-1
     eventemitter3: ^4.0.7
   languageName: unknown
   linkType: soft
 
-"@arche/example@workspace:packages/example":
+"@arche-polkadot/example@workspace:packages/example":
   version: 0.0.0-use.local
-  resolution: "@arche/example@workspace:packages/example"
+  resolution: "@arche-polkadot/example@workspace:packages/example"
   dependencies:
     "@polkadot/api": ^2.7.1
     "@polkadot/util": ^4.1.1
@@ -39,18 +39,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@arche/extension-wallet@workspace:packages/extension-wallet":
+"@arche-polkadot/extension-wallet@workspace:packages/extension-wallet":
   version: 0.0.0-use.local
-  resolution: "@arche/extension-wallet@workspace:packages/extension-wallet"
+  resolution: "@arche-polkadot/extension-wallet@workspace:packages/extension-wallet"
   dependencies:
-    "@arche/abstract-wallet": ^0.0.1-1
+    "@arche-polkadot/abstract-wallet": ^0.0.1-1
     "@polkadot/extension-dapp": ^0.34.1
   languageName: unknown
   linkType: soft
 
-"@arche/types@^0.0.1-1, @arche/types@workspace:packages/types":
+"@arche-polkadot/types@^0.0.1-1, @arche-polkadot/types@workspace:packages/types":
   version: 0.0.0-use.local
-  resolution: "@arche/types@workspace:packages/types"
+  resolution: "@arche-polkadot/types@workspace:packages/types"
   dependencies:
     "@polkadot/api": ^2.7.1
     eventemitter3: ^4.0.7

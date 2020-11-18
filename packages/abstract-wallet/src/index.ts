@@ -1,4 +1,4 @@
-import { Account, Signer } from '@arche/types';
+import { Account, Signer } from '@arche-polkadot/types';
 
 import Events from './Events';
 

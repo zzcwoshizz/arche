@@ -1,4 +1,4 @@
-import { WalletEvents } from '@arche/types';
+import { WalletEvents } from '@arche-polkadot/types';
 import EventEmitter from 'eventemitter3';
 
 class Events {

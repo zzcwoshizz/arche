@@ -1,5 +1,5 @@
-import AbstractWallet from '@arche/abstract-wallet';
-import { Account, Signer } from '@arche/types';
+import AbstractWallet from '@arche-polkadot/abstract-wallet';
+import { Account, Signer } from '@arche-polkadot/types';
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp';
 
 class ExtensionWallet extends AbstractWallet {
