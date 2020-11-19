@@ -143,7 +143,8 @@ function createWebpack(ENV, context) {
       alias: {
         '@arche-polkadot/abstract-wallet': path.resolve(__dirname, '../abstract-wallet/src'),
         '@arche-polkadot/extension-wallet': path.resolve(__dirname, '../extension-wallet/src'),
-        '@arche-polkadot/types': path.resolve(__dirname, '../types/src')
+        '@arche-polkadot/types': path.resolve(__dirname, '../types/src'),
+        '@arche-polkadot/react-core': path.resolve(__dirname, '../react-core/src')
       }
     },
     watch: !isProd,

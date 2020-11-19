@@ -1,8 +1,10 @@
 {
   "extends": "./tsconfig.base.json",
   "exclude": [
-    "node_modules",
-    "dist"
+    "build/**/*",
+    "**/build/**/*",
+    "dist/**/*",
+    "**/dist/**/*"
   ],
   "compilerOptions": {
     "baseUrl": ".",
@@ -12,7 +14,9 @@
       "@arche-polkadot/extension-wallet": ["packages/extension-wallet/src"],
       "@arche-polkadot/extension-wallet/*": ["packages/extension-wallet/src/*"],
       "@arche-polkadot/types": ["packages/types/src"],
-      "@arche-polkadot/types/*": ["packages/types/src/*"]
+      "@arche-polkadot/types/*": ["packages/types/src/*"],
+      "@arche-polkadot/react-core": ["packages/react-core/src"],
+      "@arche-polkadot/react-core/*": ["packages/react-core/src/*"]
     },
     "skipLibCheck": true,
     "typeRoots": [

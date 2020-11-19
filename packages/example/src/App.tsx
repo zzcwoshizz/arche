@@ -1,61 +1,49 @@
-import ExtensionWallet from '@arche-polkadot/extension-wallet';
+import { useArcheState } from '@arche-polkadot/react-core';
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import { stringToHex } from '@polkadot/util';
 import React from 'react';
 
-const extension = new ExtensionWallet('example');
+import EnableButton from './EnableButton';
 
 let api: ApiPromise;
 
 const App: React.FunctionComponent = () => {
+  const {
+    signer,
+    accounts: [account]
+  } = useArcheState();
+
   React.useEffect(() => {
-    extension.on('enable', async () => {
-      const accounts = await extension.getAccounts();
-      const signer = await extension.getSigner();
+    const provider = new WsProvider('wss://rpc.polkadot.io/');
 
-      if (signer) {
-        const provider = new WsProvider('wss://rpc.polkadot.io/');
-
-        api = await ApiPromise.create({
-          provider,
-          signer
-        });
-        const balance = await api.derive.balances.all(accounts[0]);
-
-        console.log(balance.freeBalance.toHuman());
-        console.log(balance.frozenFee.toHuman());
-        console.log(balance.frozenMisc.toHuman());
-        console.log(balance.reservedBalance.toHuman());
-        console.log(balance.lockedBalance.toHuman());
-        console.log(balance.lockedBreakdown);
-        console.log(balance.availableBalance.toHuman());
-        console.log(balance.votingBalance.toHuman());
-        console.log(balance.vestedBalance.toHuman());
-        console.log(balance.vestedClaimable.toHuman());
-        console.log(balance.vestingEndBlock.toHuman());
-        console.log(balance.vestingLocked.toHuman());
-        console.log(balance.vestingPerBlock.toHuman());
-        console.log(balance.vestingTotal.toHuman());
-        api
-          .sign(accounts[0], {
-            data: stringToHex('test')
-          })
-          .then(console.log);
-      }
+    api = new ApiPromise({
+      provider
     });
-    extension.on('disable', () => console.log('disable'));
-    extension.on('error', () => console.log('error'));
   }, []);
+
+  React.useEffect(() => {
+    if (signer) {
+      api.setSigner(signer);
+    }
+  }, [signer]);
+
+  const getBalance = React.useCallback(async () => {
+    await api.isReady;
+
+    const balances = await api.derive.balances.all(account);
+
+    console.log('availableBalance', balances.availableBalance.toHuman());
+    console.log('freeBalance', balances.freeBalance.toHuman());
+    console.log('reservedBalance', balances.reservedBalance.toHuman());
+
+    // transfer
+    const submitable = api.tx.balances.transfer(account, 20000000000);
+
+    submitable.signAndSend(account);
+  }, [account]);
 
   return (
     <div>
-      <button
-        onClick={async () => {
-          await extension.enable();
-        }}
-      >
-        Connect
-      </button>
+      <EnableButton onClick={getBalance}>获取余额</EnableButton>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 {
   "name": "@arche-polkadot/extension-wallet",
-  "version": "0.0.1-1",
+  "version": "0.0.1-2",
   "description": "A wallet base on polkadot",
   "main": "index.js",
   "author": "Patract Labs",

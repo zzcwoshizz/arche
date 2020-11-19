@@ -25,12 +25,12 @@ class ExtensionWallet extends AbstractWallet {
       return;
     }
 
-    this.#enabled = true;
-
     try {
       const injected = await web3Enable(this.#originName);
 
       this.#signer = injected[0].signer;
+
+      this.#enabled = true;
 
       this.onEnable();
     } catch (error) {
