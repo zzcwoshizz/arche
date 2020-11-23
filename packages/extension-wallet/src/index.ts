@@ -1,6 +1,6 @@
 import AbstractWallet from '@arche-polkadot/abstract-wallet';
 import { Account, Signer } from '@arche-polkadot/types';
-import { web3Accounts, web3Enable } from '@polkadot/extension-dapp';
+import { isWeb3Injected, web3Accounts, web3Enable } from '@polkadot/extension-dapp';
 
 class ExtensionWallet extends AbstractWallet {
   #enabled = false;
@@ -14,6 +14,10 @@ class ExtensionWallet extends AbstractWallet {
 
   get enabled() {
     return this.#enabled;
+  }
+
+  get isInjected(): boolean {
+    return isWeb3Injected;
   }
 
   get originName() {
