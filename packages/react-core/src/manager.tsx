@@ -22,21 +22,18 @@ const ArcheProvider: React.FunctionComponent = ({ children }) => {
   const [wallet, setWallet] = React.useState<AbstractWallet | null>(null);
   const [enabled, setEnabled] = React.useState(false);
 
-  const enable = React.useCallback(
-    async (wallet: AbstractWallet) => {
-      wallet.once('enable', async () => {
-        const [accounts, signer] = await Promise.all([wallet.getAccounts(), wallet.getSigner()]);
+  const enable = React.useCallback(async (wallet: AbstractWallet) => {
+    wallet.once('enable', async () => {
+      const [accounts, signer] = await Promise.all([wallet.getAccounts(), wallet.getSigner()]);
 
-        setWallet(wallet);
-        setAccounts(accounts);
-        setSigner(signer);
-        setEnabled(true);
-      });
+      setWallet(wallet);
+      setAccounts(accounts);
+      setSigner(signer);
+      setEnabled(true);
+    });
 
-      wallet.enable();
-    },
-    [wallet, setWallet, setAccounts, setSigner, setSigner]
-  );
+    wallet.enable();
+  }, []);
 
   const disable = React.useCallback(() => {
     wallet?.once('disable', async () => {
@@ -47,7 +44,7 @@ const ArcheProvider: React.FunctionComponent = ({ children }) => {
     });
 
     wallet?.disable();
-  }, [wallet, setWallet, setAccounts, setSigner, setSigner]);
+  }, [wallet]);
 
   React.useEffect(() => {
     const onEnable = () => {
@@ -62,18 +59,25 @@ const ArcheProvider: React.FunctionComponent = ({ children }) => {
       console.error(error);
     };
 
+    const onAccountChange = (accounts: Account[]) => {
+      setAccounts(accounts);
+    };
+
     wallet?.on('enable', onEnable);
 
     wallet?.on('disable', onDisable);
 
     wallet?.on('error', onError);
 
+    wallet?.on('account_change', onAccountChange);
+
     return () => {
       wallet?.off('enable', onEnable);
       wallet?.off('disable', onDisable);
       wallet?.off('error', onError);
+      wallet?.off('account_change', onAccountChange);
     };
-  }, [wallet, setEnabled]);
+  }, [wallet]);
 
   return (
     <stateContext.Provider value={{ accounts, signer, wallet, enabled }}>

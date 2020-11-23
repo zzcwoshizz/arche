@@ -1,6 +1,6 @@
 import { Signer as ApiSigner } from '@polkadot/api/types';
 
-export type WalletEvents = 'enable' | 'disable' | 'error';
+export type WalletEvents = 'enable' | 'disable' | 'error' | 'account_change';
 
 export type Account = string;
 
