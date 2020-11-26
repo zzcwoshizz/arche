@@ -9,12 +9,12 @@ const craeteArchContext = () => {
   const dispatchContext = React.createContext<ArcheDispatchContext>({} as ArcheDispatchContext);
 
   return {
-    stateContext,
-    dispatchContext
+    dispatchContext,
+    stateContext
   };
 };
 
-const { stateContext, dispatchContext } = craeteArchContext();
+const { dispatchContext, stateContext } = craeteArchContext();
 
 const ArcheProvider: React.FunctionComponent = ({ children }) => {
   const [accounts, setAccounts] = React.useState<Account[]>([]);
@@ -32,18 +32,18 @@ const ArcheProvider: React.FunctionComponent = ({ children }) => {
       setEnabled(true);
     });
 
-    wallet.enable();
+    await wallet.enable();
   }, []);
 
-  const disable = React.useCallback(() => {
-    wallet?.once('disable', async () => {
+  const disable = React.useCallback(async () => {
+    wallet?.once('disable', () => {
       setWallet(null);
       setAccounts([]);
       setSigner(null);
       setEnabled(false);
     });
 
-    wallet?.disable();
+    await wallet?.disable();
   }, [wallet]);
 
   React.useEffect(() => {
@@ -80,13 +80,13 @@ const ArcheProvider: React.FunctionComponent = ({ children }) => {
   }, [wallet]);
 
   return (
-    <stateContext.Provider value={{ accounts, signer, wallet, enabled }}>
-      <dispatchContext.Provider value={{ enable, disable }}>{children}</dispatchContext.Provider>
+    <stateContext.Provider value={{ accounts, enabled, signer, wallet }}>
+      <dispatchContext.Provider value={{ disable, enable }}>{children}</dispatchContext.Provider>
     </stateContext.Provider>
   );
 };
 
-const useArcheState = () => {
+const useArcheState = (): ArcheStateContext => {
   const context = React.useContext(stateContext);
 
   if (context === undefined) {
@@ -96,7 +96,7 @@ const useArcheState = () => {
   return context;
 };
 
-const useArcheDispatch = () => {
+const useArcheDispatch = (): ArcheDispatchContext => {
   const context = React.useContext(dispatchContext);
 
   if (context === undefined) {

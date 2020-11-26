@@ -1,13 +1,13 @@
 {
   "name": "@arche-polkadot/extension-wallet",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A wallet base on polkadot",
   "main": "index.js",
   "author": "Patract Labs",
   "license": "MIT",
   "dependencies": {
-    "@arche-polkadot/abstract-wallet": "^0.0.1",
-    "@arche-polkadot/types": "^0.0.1",
+    "@arche-polkadot/abstract-wallet": "^0.0.2",
+    "@arche-polkadot/types": "^0.0.2",
     "@polkadot/extension-dapp": "^0.34.1",
     "tiny-warning": "^1.0.3"
   }

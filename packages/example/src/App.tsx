@@ -38,7 +38,7 @@ const App: React.FunctionComponent = () => {
     // transfer
     const submitable = api.tx.balances.transfer(account.address, 20000000000);
 
-    submitable.signAndSend(account.address);
+    await submitable.signAndSend(account.address);
   }, [account]);
 
   return (

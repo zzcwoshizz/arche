@@ -5,8 +5,8 @@ import React from 'react';
 const extension = new ExtensionWallet('example');
 
 const EnableButton: React.FunctionComponent<React.DetailedHTMLProps<
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
+React.ButtonHTMLAttributes<HTMLButtonElement>,
+HTMLButtonElement
 >> = (props) => {
   const { enabled } = useArcheState();
   const { enable } = useArcheDispatch();
@@ -17,8 +17,8 @@ const EnableButton: React.FunctionComponent<React.DetailedHTMLProps<
     return (
       <button
         {...props}
-        onClick={() => {
-          enable(extension);
+        onClick={async () => {
+          await enable(extension);
         }}
       >
         Connect Wallet

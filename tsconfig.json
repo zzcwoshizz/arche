@@ -1,10 +1,11 @@
 {
-  "extends": "./tsconfig.base.json",
+  "extends": "@patract/dev/config/tsconfig.json",
   "exclude": [
     "build/**/*",
     "**/build/**/*",
     "dist/**/*",
-    "**/dist/**/*"
+    "**/dist/**/*",
+    "node_modules"
   ],
   "compilerOptions": {
     "baseUrl": ".",
@@ -22,8 +23,6 @@
     "typeRoots": [
       "./node_modules/@types"
     ],
-    "module": "CommonJS",
-    "jsx": "react",
-    "target": "ES6"
+    "module": "CommonJS"
   }
 }

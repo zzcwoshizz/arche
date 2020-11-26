@@ -1,12 +1,12 @@
 {
   "name": "@arche-polkadot/abstract-wallet",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A wallet base on polkadot",
   "main": "index.js",
   "author": "Patract Labs",
   "license": "MIT",
   "dependencies": {
-    "@arche-polkadot/types": "^0.0.1",
+    "@arche-polkadot/types": "^0.0.2",
     "eventemitter3": "^4.0.7"
   }
 }

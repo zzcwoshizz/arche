@@ -12,6 +12,7 @@ function createWebpack(ENV, context) {
   const hasPublic = fs.existsSync(path.join(context, 'public'));
   const plugins = hasPublic ? [new CopyWebpackPlugin({ patterns: [{ from: 'public' }] })] : [];
 
+  console.log(isProd);
   !isProd &&
     plugins.push(
       new WebpackPluginServe({
@@ -139,13 +140,13 @@ function createWebpack(ENV, context) {
       ])
       .filter((plugin) => plugin),
     resolve: {
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {
         '@arche-polkadot/abstract-wallet': path.resolve(__dirname, '../abstract-wallet/src'),
         '@arche-polkadot/extension-wallet': path.resolve(__dirname, '../extension-wallet/src'),
-        '@arche-polkadot/types': path.resolve(__dirname, '../types/src'),
-        '@arche-polkadot/react-core': path.resolve(__dirname, '../react-core/src')
-      }
+        '@arche-polkadot/react-core': path.resolve(__dirname, '../react-core/src'),
+        '@arche-polkadot/types': path.resolve(__dirname, '../types/src')
+      },
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     watch: !isProd,
     watchOptions: {

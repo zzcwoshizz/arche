@@ -1,16 +1,17 @@
 import AbstractWallet from '@arche-polkadot/abstract-wallet';
 import { Account, Signer } from '@arche-polkadot/types';
-import {
-  isWeb3Injected,
+import { isWeb3Injected,
   web3Accounts,
   web3AccountsSubscribe,
   web3Enable,
-  web3EnablePromise
-} from '@polkadot/extension-dapp';
+  web3EnablePromise } from '@polkadot/extension-dapp';
+import { InjectedExtension } from '@polkadot/extension-inject/types';
 import warning from 'tiny-warning';
 
+export type UnSub = () => void;
+
 class NotInstallError extends Error {
-  constructor() {
+  constructor () {
     super();
     this.message = 'Please install extension';
     this.name = 'NotInstallError';
@@ -24,52 +25,39 @@ class ExtensionWallet extends AbstractWallet {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   #unsub: () => any = () => {};
 
-  constructor(originName: string) {
+  constructor (originName: string) {
     super();
     this.#originName = originName;
   }
 
-  get enabled() {
+  get enabled (): boolean {
     return this.#enabled;
   }
 
   /**
    * is browser install extension [https://polkadot.js.org/extension/](https://polkadot.js.org/extension/)
    */
-  get isInjected(): boolean {
+  get isInjected (): boolean {
     return isWeb3Injected;
   }
 
   /**
    * get InjectedExtension
    */
-  get injectedExtensions() {
+  get injectedExtensions (): Promise<InjectedExtension[]> | null {
     return web3EnablePromise;
   }
 
-  get originName() {
+  get originName (): string {
     return this.#originName;
   }
 
-  public async subscribe(cb: (accounts: Account[]) => void) {
-    const injected = await this.isInjected;
-
-    if (injected) {
-      return;
-    } else {
-      warning(false, 'subscribe must call after call enable');
-
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      return () => {};
-    }
-  }
-
-  public async enable() {
+  public async enable (): Promise<void> {
     if (this.#enabled) {
       return;
     }
 
-    const injected = await this.isInjected;
+    const injected = this.isInjected;
 
     if (!injected) {
       warning(false, 'Not install extension');
@@ -82,7 +70,10 @@ class ExtensionWallet extends AbstractWallet {
       const injected = await web3Enable(this.#originName);
 
       const unsub = await web3AccountsSubscribe((accounts) => {
-        const _accounts = accounts.map((account) => account.address);
+        const _accounts: Account[] = accounts.map((account) => ({
+          address: account.address,
+          name: account.meta.name
+        }));
 
         this.onAccountChange(_accounts);
       });
@@ -94,13 +85,13 @@ class ExtensionWallet extends AbstractWallet {
       this.#enabled = true;
 
       this.onEnable();
-    } catch (error) {
-      warning(false, error.message);
+    } catch (error: any) {
+      warning(false, (error as Error).message);
       this.onError(error);
     }
   }
 
-  public async disable(): Promise<void> {
+  public async disable (): Promise<void> {
     this.#enabled = false;
 
     this.#signer = null;
@@ -108,10 +99,12 @@ class ExtensionWallet extends AbstractWallet {
     this.#unsub();
 
     this.onDisable();
+
+    await Promise.resolve();
   }
 
-  public async getAccounts(): Promise<Account[]> {
-    const injected = await this.isInjected;
+  public async getAccounts (): Promise<Account[]> {
+    const injected = this.isInjected;
 
     if (!injected) {
       warning(false, 'Not install extension');
@@ -135,24 +128,26 @@ class ExtensionWallet extends AbstractWallet {
     return accounts;
   }
 
-  public async getSigner(): Promise<Signer | null> {
+  public async getSigner (): Promise<Signer | null> {
+    await Promise.resolve();
+
     return this.#signer;
   }
 
-  protected onError(error: any): void {
+  protected onError (error: Error): void {
     this.emit('error', error);
   }
 
-  protected onEnable(...args: any[]): void {
+  protected onEnable (...args: any[]): void {
     this.emit('enable', ...args);
   }
 
-  protected onDisable(...args: any[]): void {
+  protected onDisable (...args: any[]): void {
     this.emit('disable', ...args);
   }
 
-  protected onAccountChange(...args: any[]): void {
-    this.emit('account_change', ...args);
+  protected onAccountChange (accounts: Account[]): void {
+    this.emit('account_change', accounts);
   }
 }
 
