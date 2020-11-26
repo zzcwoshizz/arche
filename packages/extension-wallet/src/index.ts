@@ -124,7 +124,10 @@ class ExtensionWallet extends AbstractWallet {
     try {
       const accountWithMeta = await web3Accounts();
 
-      accounts = accountWithMeta.map((account) => account.address);
+      accounts = accountWithMeta.map((account) => ({
+        address: account.address,
+        name: account.meta.name
+      }));
     } catch (e) {
       warning(false, 'extension not enabled, falling back to call enable');
     }

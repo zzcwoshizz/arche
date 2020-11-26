@@ -29,16 +29,16 @@ const App: React.FunctionComponent = () => {
   const getBalance = React.useCallback(async () => {
     await api.isReady;
 
-    const balances = await api.derive.balances.all(account);
+    const balances = await api.derive.balances.all(account.address);
 
     console.log('availableBalance', balances.availableBalance.toHuman());
     console.log('freeBalance', balances.freeBalance.toHuman());
     console.log('reservedBalance', balances.reservedBalance.toHuman());
 
     // transfer
-    const submitable = api.tx.balances.transfer(account, 20000000000);
+    const submitable = api.tx.balances.transfer(account.address, 20000000000);
 
-    submitable.signAndSend(account);
+    submitable.signAndSend(account.address);
   }, [account]);
 
   return (
