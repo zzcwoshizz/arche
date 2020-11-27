@@ -1,17 +1,19 @@
 import AbstractWallet from '@arche-polkadot/abstract-wallet';
 import { Account, Signer } from '@arche-polkadot/types';
-import { isWeb3Injected,
+import {
+  isWeb3Injected,
   web3Accounts,
   web3AccountsSubscribe,
   web3Enable,
-  web3EnablePromise } from '@polkadot/extension-dapp';
+  web3EnablePromise
+} from '@polkadot/extension-dapp';
 import { InjectedExtension } from '@polkadot/extension-inject/types';
 import warning from 'tiny-warning';
 
 export type UnSub = () => void;
 
 class NotInstallError extends Error {
-  constructor () {
+  constructor() {
     super();
     this.message = 'Please install extension';
     this.name = 'NotInstallError';
@@ -25,34 +27,34 @@ class ExtensionWallet extends AbstractWallet {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   #unsub: () => any = () => {};
 
-  constructor (originName: string) {
+  constructor(originName: string) {
     super();
     this.#originName = originName;
   }
 
-  get enabled (): boolean {
+  get enabled(): boolean {
     return this.#enabled;
   }
 
   /**
    * is browser install extension [https://polkadot.js.org/extension/](https://polkadot.js.org/extension/)
    */
-  get isInjected (): boolean {
+  get isInjected(): boolean {
     return isWeb3Injected;
   }
 
   /**
    * get InjectedExtension
    */
-  get injectedExtensions (): Promise<InjectedExtension[]> | null {
+  get injectedExtensions(): Promise<InjectedExtension[]> | null {
     return web3EnablePromise;
   }
 
-  get originName (): string {
+  get originName(): string {
     return this.#originName;
   }
 
-  public async enable (): Promise<void> {
+  public async enable(): Promise<void> {
     if (this.#enabled) {
       return;
     }
@@ -91,7 +93,7 @@ class ExtensionWallet extends AbstractWallet {
     }
   }
 
-  public async disable (): Promise<void> {
+  public async disable(): Promise<void> {
     this.#enabled = false;
 
     this.#signer = null;
@@ -103,7 +105,7 @@ class ExtensionWallet extends AbstractWallet {
     await Promise.resolve();
   }
 
-  public async getAccounts (): Promise<Account[]> {
+  public async getAccounts(): Promise<Account[]> {
     const injected = this.isInjected;
 
     if (!injected) {
@@ -128,25 +130,25 @@ class ExtensionWallet extends AbstractWallet {
     return accounts;
   }
 
-  public async getSigner (): Promise<Signer | null> {
+  public async getSigner(): Promise<Signer | null> {
     await Promise.resolve();
 
     return this.#signer;
   }
 
-  protected onError (error: Error): void {
+  protected onError(error: Error): void {
     this.emit('error', error);
   }
 
-  protected onEnable (...args: any[]): void {
+  protected onEnable(...args: any[]): void {
     this.emit('enable', ...args);
   }
 
-  protected onDisable (...args: any[]): void {
+  protected onDisable(...args: any[]): void {
     this.emit('disable', ...args);
   }
 
-  protected onAccountChange (accounts: Account[]): void {
+  protected onAccountChange(accounts: Account[]): void {
     this.emit('account_change', accounts);
   }
 }

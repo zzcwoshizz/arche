@@ -14,16 +14,16 @@ module.exports = {
   ],
   parserOptions: {
     ...base.parserOptions,
-    project: [
-      './tsconfig.json'
-    ]
+    project: ['./tsconfig.json']
   },
   rules: {
     ...base.rules,
+    'prettier/prettier': ['error', {}, { usePrettierrc: true }],
     // needs to be switched on at some point
     '@typescript-eslint/no-explicit-any': 'off',
     // this seems very broken atm, false positives
     '@typescript-eslint/unbound-method': 'off',
-    'header/header': 'off'
+    'header/header': 'off',
+    'object-curly-newline': 'off'
   }
 };

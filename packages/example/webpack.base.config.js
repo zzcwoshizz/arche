@@ -10,7 +10,9 @@ const { WebpackPluginServe } = require('webpack-plugin-serve');
 function createWebpack(ENV, context) {
   const isProd = ENV === 'production';
   const hasPublic = fs.existsSync(path.join(context, 'public'));
-  const plugins = hasPublic ? [new CopyWebpackPlugin({ patterns: [{ from: 'public' }] })] : [];
+  const plugins = hasPublic
+    ? [new CopyWebpackPlugin({ patterns: [{ from: 'public' }] })]
+    : [];
 
   console.log(isProd);
   !isProd &&
@@ -34,7 +36,9 @@ function createWebpack(ENV, context) {
           exclude: /(node_modules)/,
           test: /\.css$/,
           use: [
-            isProd ? MiniCssExtractPlugin.loader : require.resolve('style-loader'),
+            isProd
+              ? MiniCssExtractPlugin.loader
+              : require.resolve('style-loader'),
             {
               loader: require.resolve('css-loader'),
               options: {
@@ -47,7 +51,9 @@ function createWebpack(ENV, context) {
           include: /node_modules/,
           test: /\.css$/,
           use: [
-            isProd ? MiniCssExtractPlugin.loader : require.resolve('style-loader'),
+            isProd
+              ? MiniCssExtractPlugin.loader
+              : require.resolve('style-loader'),
             require.resolve('css-loader')
           ]
         },
@@ -64,7 +70,10 @@ function createWebpack(ENV, context) {
         },
         {
           test: /\.md$/,
-          use: [require.resolve('html-loader'), require.resolve('markdown-loader')]
+          use: [
+            require.resolve('html-loader'),
+            require.resolve('markdown-loader')
+          ]
         },
         {
           exclude: [/semantic-ui-css/],
@@ -141,9 +150,18 @@ function createWebpack(ENV, context) {
       .filter((plugin) => plugin),
     resolve: {
       alias: {
-        '@arche-polkadot/abstract-wallet': path.resolve(__dirname, '../abstract-wallet/src'),
-        '@arche-polkadot/extension-wallet': path.resolve(__dirname, '../extension-wallet/src'),
-        '@arche-polkadot/react-core': path.resolve(__dirname, '../react-core/src'),
+        '@arche-polkadot/abstract-wallet': path.resolve(
+          __dirname,
+          '../abstract-wallet/src'
+        ),
+        '@arche-polkadot/extension-wallet': path.resolve(
+          __dirname,
+          '../extension-wallet/src'
+        ),
+        '@arche-polkadot/react-core': path.resolve(
+          __dirname,
+          '../react-core/src'
+        ),
         '@arche-polkadot/types': path.resolve(__dirname, '../types/src')
       },
       extensions: ['.js', '.jsx', '.ts', '.tsx']

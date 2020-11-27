@@ -5,8 +5,12 @@ import React from 'react';
 import { ArcheDispatchContext, ArcheStateContext } from './types';
 
 const craeteArchContext = () => {
-  const stateContext = React.createContext<ArcheStateContext>({} as ArcheStateContext);
-  const dispatchContext = React.createContext<ArcheDispatchContext>({} as ArcheDispatchContext);
+  const stateContext = React.createContext<ArcheStateContext>(
+    {} as ArcheStateContext
+  );
+  const dispatchContext = React.createContext<ArcheDispatchContext>(
+    {} as ArcheDispatchContext
+  );
 
   return {
     dispatchContext,
@@ -24,7 +28,10 @@ const ArcheProvider: React.FunctionComponent = ({ children }) => {
 
   const enable = React.useCallback(async (wallet: AbstractWallet) => {
     wallet.once('enable', async () => {
-      const [accounts, signer] = await Promise.all([wallet.getAccounts(), wallet.getSigner()]);
+      const [accounts, signer] = await Promise.all([
+        wallet.getAccounts(),
+        wallet.getSigner()
+      ]);
 
       setWallet(wallet);
       setAccounts(accounts);
@@ -81,7 +88,9 @@ const ArcheProvider: React.FunctionComponent = ({ children }) => {
 
   return (
     <stateContext.Provider value={{ accounts, enabled, signer, wallet }}>
-      <dispatchContext.Provider value={{ disable, enable }}>{children}</dispatchContext.Provider>
+      <dispatchContext.Provider value={{ disable, enable }}>
+        {children}
+      </dispatchContext.Provider>
     </stateContext.Provider>
   );
 };

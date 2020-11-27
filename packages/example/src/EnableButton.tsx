@@ -4,10 +4,12 @@ import React from 'react';
 
 const extension = new ExtensionWallet('example');
 
-const EnableButton: React.FunctionComponent<React.DetailedHTMLProps<
-React.ButtonHTMLAttributes<HTMLButtonElement>,
-HTMLButtonElement
->> = (props) => {
+const EnableButton: React.FunctionComponent<
+  React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >
+> = (props) => {
   const { enabled } = useArcheState();
   const { enable } = useArcheDispatch();
 

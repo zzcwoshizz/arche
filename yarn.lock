@@ -3435,18 +3435,17 @@ __metadata:
   linkType: hard
 
 "babel-loader@npm:^8.1.0":
-  version: 8.2.1
-  resolution: "babel-loader@npm:8.2.1"
+  version: 8.2.2
+  resolution: "babel-loader@npm:8.2.2"
   dependencies:
-    find-cache-dir: ^2.1.0
+    find-cache-dir: ^3.3.1
     loader-utils: ^1.4.0
-    make-dir: ^2.1.0
-    pify: ^4.0.1
+    make-dir: ^3.1.0
     schema-utils: ^2.6.5
   peerDependencies:
     "@babel/core": ^7.0.0
     webpack: ">=2"
-  checksum: e4bc46cbd8095f1b7e8c424b7a782c15786870f25cc760c5ff40463db74d873e24296bc61e1fade33de897c2c81b92653ff3cdcb1df0cfa0b5f49c878948dd41
+  checksum: 362bb715736abec0162bdf8dc2a523a09c46c7b14aef13d9c6548ff609b8cb3879129822a5096401cd955230d836bde19037d9cbebeced940d5348c64959bec3
   languageName: node
   linkType: hard
 
@@ -5421,9 +5420,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.591":
-  version: 1.3.607
-  resolution: "electron-to-chromium@npm:1.3.607"
-  checksum: 1f0b58566b64fed545e38466c960f0fd3805a41ad427948e3ae285380b4abc261b0aa03d68e3246b9d8d304fbff4b5e0c42f1c4753bbbffe36f390ff7a032d23
+  version: 1.3.608
+  resolution: "electron-to-chromium@npm:1.3.608"
+  checksum: 70a41d242ad86404f67ee6b93b231980c60eb94cd0ee6e1a74e18a247f04be6d559c1efd4332779cc24f65f439540cb96b926b3f420a5da67aa65a3b88da6761
   languageName: node
   linkType: hard
 
@@ -5563,7 +5562,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es-abstract@npm:^1.17.0-next.1, es-abstract@npm:^1.17.5":
+"es-abstract@npm:^1.17.0-next.1":
   version: 1.17.7
   resolution: "es-abstract@npm:1.17.7"
   dependencies:
@@ -7726,11 +7725,11 @@ fsevents@~2.1.2:
   linkType: hard
 
 "is-core-module@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "is-core-module@npm:2.1.0"
+  version: 2.2.0
+  resolution: "is-core-module@npm:2.2.0"
   dependencies:
     has: ^1.0.3
-  checksum: 6e9d45be21c607e5af4f0ff91e68f808c53cafb8729dc30425fc83dc2538ac2af65242752e4e5c5f75aac767cae6bd8bd1834a998931e1c236fb121f9bad7029
+  checksum: 2344744de98a3bc22e2bb30895f307d7889f09e963f9bcb1cc321788f508c8b463f75e0a9ca009eeeb8eb9465181b5c15f1ec9299a6bb6921cfbb2423892e0ba
   languageName: node
   linkType: hard
 
@@ -9330,7 +9329,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"make-dir@npm:^3.0.0, make-dir@npm:^3.0.2":
+"make-dir@npm:^3.0.0, make-dir@npm:^3.0.2, make-dir@npm:^3.1.0":
   version: 3.1.0
   resolution: "make-dir@npm:3.1.0"
   dependencies:
@@ -10185,13 +10184,14 @@ fsevents@~2.1.2:
   linkType: hard
 
 "object.entries@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "object.entries@npm:1.1.2"
+  version: 1.1.3
+  resolution: "object.entries@npm:1.1.3"
   dependencies:
+    call-bind: ^1.0.0
     define-properties: ^1.1.3
-    es-abstract: ^1.17.5
+    es-abstract: ^1.18.0-next.1
     has: ^1.0.3
-  checksum: bcde47ee0396df8bc074e3194b74d3983e3da205321836f132cc55403f26cd06cd8d677492ca35697fa4d52419428fec2e01b60a96db1c22d21f1978d37db97d
+  checksum: 89eec6d43bf8440dfd800ad76486d76a900ff7e3e20b560abb4cba8494bdc8524af8cf49a897739da776fe434f8091569b2422333075378f9fd5a50d599601eb
   languageName: node
   linkType: hard
 
@@ -10227,14 +10227,14 @@ fsevents@~2.1.2:
   linkType: hard
 
 "object.values@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "object.values@npm:1.1.1"
+  version: 1.1.2
+  resolution: "object.values@npm:1.1.2"
   dependencies:
+    call-bind: ^1.0.0
     define-properties: ^1.1.3
-    es-abstract: ^1.17.0-next.1
-    function-bind: ^1.1.1
+    es-abstract: ^1.18.0-next.1
     has: ^1.0.3
-  checksum: 33e99ceb5cdb4c4b43372aa133ecb1d73d5cf73ebbbe9ec64f45cd39c87d0226ca88d6a354cd8b819fbde6b9ebbc7df1a6a093f91d2c951c51a07546f54fe33d
+  checksum: d9e492095a46caa1531d5917ba707967ae882193b6e0b318d56f5f867b756ad62a3e600fae434e9d0b6a33f1a35d7a604631d6db3f876266c7802c5b63923f16
   languageName: node
   linkType: hard
 
