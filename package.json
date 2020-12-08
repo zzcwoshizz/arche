@@ -32,7 +32,6 @@
     "@patract/dev": "^0.5.5",
     "@types/react": "^16.9.56",
     "@types/react-dom": "^16.9.9",
-    "cz-conventional-changelog": "3.3.0",
     "eslint": "^7.13.0",
     "prettier": "^2.1.2",
     "react": "^17.0.1",
@@ -46,10 +45,5 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
