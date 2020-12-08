@@ -24,42 +24,34 @@ const ArcheProvider: React.FunctionComponent = ({ children }) => {
   const [accounts, setAccounts] = React.useState<Account[]>([]);
   const [signer, setSigner] = React.useState<Signer | null>(null);
   const [wallet, setWallet] = React.useState<AbstractWallet | null>(null);
-  const [enabled, setEnabled] = React.useState(false);
+  const [connected, setConnected] = React.useState(false);
 
-  const enable = React.useCallback(async (wallet: AbstractWallet) => {
-    wallet.once('enable', async () => {
-      const [accounts, signer] = await Promise.all([
-        wallet.getAccounts(),
-        wallet.getSigner()
-      ]);
-
-      setWallet(wallet);
-      setAccounts(accounts);
-      setSigner(signer);
-      setEnabled(true);
-    });
-
+  const connect = React.useCallback(async (wallet: AbstractWallet) => {
+    setWallet(wallet);
     await wallet.enable();
   }, []);
 
-  const disable = React.useCallback(async () => {
-    wallet?.once('disable', () => {
-      setWallet(null);
-      setAccounts([]);
-      setSigner(null);
-      setEnabled(false);
-    });
-
+  const disconnect = React.useCallback(async () => {
     await wallet?.disable();
   }, [wallet]);
 
   React.useEffect(() => {
     const onEnable = () => {
-      setEnabled(true);
+      setConnected(true);
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      Promise.all([wallet?.getAccounts(), wallet?.getSigner()]).then(
+        ([accounts, signer]) => {
+          setAccounts(accounts ?? []);
+          setSigner(signer ?? null);
+        }
+      );
     };
 
     const onDisable = () => {
-      setEnabled(false);
+      setConnected(false);
+      setSigner(null);
+      setAccounts([]);
+      setWallet(null);
     };
 
     const onError = (error: any) => {
@@ -87,8 +79,8 @@ const ArcheProvider: React.FunctionComponent = ({ children }) => {
   }, [wallet]);
 
   return (
-    <stateContext.Provider value={{ accounts, enabled, signer, wallet }}>
-      <dispatchContext.Provider value={{ disable, enable }}>
+    <stateContext.Provider value={{ accounts, connected, signer, wallet }}>
+      <dispatchContext.Provider value={{ connect, disconnect }}>
         {children}
       </dispatchContext.Provider>
     </stateContext.Provider>

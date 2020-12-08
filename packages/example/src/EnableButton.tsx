@@ -10,17 +10,17 @@ const EnableButton: React.FunctionComponent<
     HTMLButtonElement
   >
 > = (props) => {
-  const { enabled } = useArcheState();
-  const { enable } = useArcheDispatch();
+  const { connected } = useArcheState();
+  const { connect } = useArcheDispatch();
 
-  if (enabled) {
+  if (connected) {
     return <button {...props} />;
   } else {
     return (
       <button
         {...props}
         onClick={async () => {
-          await enable(extension);
+          await connect(extension);
         }}
       >
         Connect Wallet

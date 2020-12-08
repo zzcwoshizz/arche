@@ -1,7 +1,6 @@
 import AbstractWallet from '@arche-polkadot/abstract-wallet';
 import { Account, Signer } from '@arche-polkadot/types';
 import {
-  isWeb3Injected,
   web3Accounts,
   web3AccountsSubscribe,
   web3Enable,
@@ -40,7 +39,8 @@ class ExtensionWallet extends AbstractWallet {
    * is browser install extension [https://polkadot.js.org/extension/](https://polkadot.js.org/extension/)
    */
   get isInjected(): boolean {
-    return isWeb3Injected;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    return Object.keys(((window as unknown) as any).injectedWeb3).length !== 0;
   }
 
   /**

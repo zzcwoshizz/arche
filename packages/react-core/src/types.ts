@@ -5,10 +5,10 @@ export interface ArcheStateContext {
   accounts: Account[];
   signer: Signer | null;
   wallet: AbstractWallet | null;
-  enabled: boolean;
+  connected: boolean;
 }
 
 export interface ArcheDispatchContext {
-  enable: (wallet: AbstractWallet) => Promise<void>;
-  disable: () => void;
+  connect: (wallet: AbstractWallet) => Promise<void>;
+  disconnect: () => void;
 }
