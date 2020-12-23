@@ -14,7 +14,6 @@ function createWebpack(ENV, context) {
     ? [new CopyWebpackPlugin({ patterns: [{ from: 'public' }] })]
     : [];
 
-  console.log(isProd);
   !isProd &&
     plugins.push(
       new WebpackPluginServe({
@@ -32,6 +31,11 @@ function createWebpack(ENV, context) {
     mode: ENV,
     module: {
       rules: [
+        {
+          include: /node_modules/,
+          test: /\.mjs$/,
+          type: 'javascript/auto'
+        },
         {
           exclude: /(node_modules)/,
           test: /\.css$/,
@@ -59,7 +63,7 @@ function createWebpack(ENV, context) {
         },
         {
           exclude: /(node_modules)/,
-          test: /\.(js|ts|tsx)$/,
+          test: /\.(js|mjs|ts|tsx)$/,
           use: [
             require.resolve('thread-loader'),
             {
@@ -164,7 +168,7 @@ function createWebpack(ENV, context) {
         ),
         '@arche-polkadot/types': path.resolve(__dirname, '../types/src')
       },
-      extensions: ['.js', '.jsx', '.ts', '.tsx']
+      extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx']
     },
     watch: !isProd,
     watchOptions: {

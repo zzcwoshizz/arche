@@ -1,5 +1,5 @@
 import { useArcheState } from '@arche-polkadot/react-core';
-import { ApiPromise, WsProvider } from '@polkadot/api';
+import { ApiPromise } from '@polkadot/api';
 import React from 'react';
 
 import EnableButton from './EnableButton';
@@ -7,18 +7,24 @@ import EnableButton from './EnableButton';
 let api: ApiPromise;
 
 const App: React.FunctionComponent = () => {
-  const {
-    signer,
-    accounts: [account]
-  } = useArcheState();
+  const { accounts, provider, signer } = useArcheState();
+
+  const account = React.useMemo(() => {
+    if (accounts.length > 0) {
+      return accounts[0];
+    }
+
+    return null;
+  }, [accounts]);
 
   React.useEffect(() => {
-    const provider = new WsProvider('wss://rpc.polkadot.io/');
+    api = new ApiPromise({ provider: provider || undefined });
 
-    api = new ApiPromise({
-      provider
-    });
-  }, []);
+    return () => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      provider?.disconnect();
+    };
+  }, [provider]);
 
   React.useEffect(() => {
     if (signer) {
@@ -27,18 +33,22 @@ const App: React.FunctionComponent = () => {
   }, [signer]);
 
   const getBalance = React.useCallback(async () => {
-    await api.isReady;
+    if (!account) {
+      return;
+    }
 
-    const balances = await api.derive.balances.all(account.address);
+    await api?.isReady;
 
-    console.log('availableBalance', balances.availableBalance.toHuman());
-    console.log('freeBalance', balances.freeBalance.toHuman());
-    console.log('reservedBalance', balances.reservedBalance.toHuman());
+    const balances = await api?.derive.balances.all(account.address);
+
+    console.log('availableBalance', balances?.availableBalance.toHuman());
+    console.log('freeBalance', balances?.freeBalance.toHuman());
+    console.log('reservedBalance', balances?.reservedBalance.toHuman());
 
     // transfer
-    const submitable = api.tx.balances.transfer(account.address, 20000000000);
+    const submitable = api?.tx.balances.transfer(account.address, 20000000000);
 
-    await submitable.signAndSend(account.address);
+    await submitable?.signAndSend(account.address);
   }, [account]);
 
   return (

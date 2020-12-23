@@ -1,4 +1,5 @@
-import { Signer as ApiSigner } from '@polkadot/api/types';
+import type { Signer as ApiSigner } from '@polkadot/api/types';
+import type { ProviderInterface } from '@polkadot/rpc-provider/types';
 
 export type WalletEvents = 'enable' | 'disable' | 'error' | 'account_change';
 
@@ -8,3 +9,5 @@ export type Account = {
 };
 
 export type Signer = ApiSigner;
+
+export type Provider = ProviderInterface;

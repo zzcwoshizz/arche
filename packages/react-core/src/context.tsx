@@ -1,5 +1,5 @@
-import AbstractWallet from '@arche-polkadot/abstract-wallet';
-import { Account, Signer } from '@arche-polkadot/types';
+import type AbstractWallet from '@arche-polkadot/abstract-wallet';
+import type { Account, Provider, Signer } from '@arche-polkadot/types';
 import React from 'react';
 
 import { ArcheDispatchContext, ArcheStateContext } from './types';
@@ -23,6 +23,7 @@ const { dispatchContext, stateContext } = craeteArchContext();
 const ArcheProvider: React.FunctionComponent = ({ children }) => {
   const [accounts, setAccounts] = React.useState<Account[]>([]);
   const [signer, setSigner] = React.useState<Signer | null>(null);
+  const [provider, setProvider] = React.useState<Provider | null>(null);
   const [wallet, setWallet] = React.useState<AbstractWallet | null>(null);
   const [connected, setConnected] = React.useState(false);
 
@@ -39,17 +40,21 @@ const ArcheProvider: React.FunctionComponent = ({ children }) => {
     const onEnable = () => {
       setConnected(true);
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      Promise.all([wallet?.getAccounts(), wallet?.getSigner()]).then(
-        ([accounts, signer]) => {
-          setAccounts(accounts ?? []);
-          setSigner(signer ?? null);
-        }
-      );
+      Promise.all([
+        wallet?.getAccounts(),
+        wallet?.getSigner(),
+        wallet?.getProvider()
+      ]).then(([accounts, signer, provider]) => {
+        setAccounts(accounts || []);
+        setSigner(signer || null);
+        setProvider(provider || null);
+      });
     };
 
     const onDisable = () => {
       setConnected(false);
       setSigner(null);
+      setProvider(null);
       setAccounts([]);
       setWallet(null);
     };
@@ -79,7 +84,9 @@ const ArcheProvider: React.FunctionComponent = ({ children }) => {
   }, [wallet]);
 
   return (
-    <stateContext.Provider value={{ accounts, connected, signer, wallet }}>
+    <stateContext.Provider
+      value={{ accounts, connected, provider, signer, wallet }}
+    >
       <dispatchContext.Provider value={{ connect, disconnect }}>
         {children}
       </dispatchContext.Provider>

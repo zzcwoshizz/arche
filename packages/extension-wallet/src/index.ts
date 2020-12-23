@@ -1,12 +1,12 @@
 import AbstractWallet from '@arche-polkadot/abstract-wallet';
-import { Account, Signer } from '@arche-polkadot/types';
+import type { Account, Provider, Signer } from '@arche-polkadot/types';
 import {
   web3Accounts,
   web3AccountsSubscribe,
   web3Enable,
   web3EnablePromise
 } from '@polkadot/extension-dapp';
-import { InjectedExtension } from '@polkadot/extension-inject/types';
+import type { InjectedExtension } from '@polkadot/extension-inject/types';
 import warning from 'tiny-warning';
 
 export type UnSub = () => void;
@@ -23,6 +23,7 @@ class ExtensionWallet extends AbstractWallet {
   #enabled = false;
   #originName: string;
   #signer: Signer | null = null;
+  #provier: Provider | null = null;
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   #unsub: () => any = () => {};
 
@@ -84,6 +85,8 @@ class ExtensionWallet extends AbstractWallet {
 
       this.#signer = injected[0].signer;
 
+      this.#provier = injected[0].provider || null;
+
       this.#enabled = true;
 
       this.onEnable();
@@ -134,6 +137,12 @@ class ExtensionWallet extends AbstractWallet {
     await Promise.resolve();
 
     return this.#signer;
+  }
+
+  public async getProvider(): Promise<Provider | null> {
+    await Promise.resolve();
+
+    return this.#provier;
   }
 
   protected onError(error: Error): void {
