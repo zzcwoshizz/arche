@@ -5,11 +5,11 @@ __metadata:
   version: 4
   cacheKey: 7
 
-"@arche-polkadot/abstract-wallet@^0.0.3, @arche-polkadot/abstract-wallet@workspace:packages/abstract-wallet":
+"@arche-polkadot/abstract-wallet@^0.0.4, @arche-polkadot/abstract-wallet@workspace:packages/abstract-wallet":
   version: 0.0.0-use.local
   resolution: "@arche-polkadot/abstract-wallet@workspace:packages/abstract-wallet"
   dependencies:
-    "@arche-polkadot/types": ^0.0.3
+    "@arche-polkadot/types": ^0.0.4
     eventemitter3: ^4.0.7
   languageName: unknown
   linkType: soft
@@ -43,8 +43,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arche-polkadot/extension-wallet@workspace:packages/extension-wallet"
   dependencies:
-    "@arche-polkadot/abstract-wallet": ^0.0.3
-    "@arche-polkadot/types": ^0.0.3
+    "@arche-polkadot/abstract-wallet": ^0.0.4
+    "@arche-polkadot/types": ^0.0.4
     "@polkadot/extension-dapp": ^0.35.1
     "@polkadot/extension-inject": ^0.35.1
     tiny-warning: ^1.0.3
@@ -55,15 +55,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@arche-polkadot/react-core@workspace:packages/react-core"
   dependencies:
-    "@arche-polkadot/abstract-wallet": ^0.0.3
-    "@arche-polkadot/types": ^0.0.3
+    "@arche-polkadot/abstract-wallet": ^0.0.4
+    "@arche-polkadot/types": ^0.0.4
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
   languageName: unknown
   linkType: soft
 
-"@arche-polkadot/types@^0.0.3, @arche-polkadot/types@workspace:packages/types":
+"@arche-polkadot/types@^0.0.4, @arche-polkadot/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@arche-polkadot/types@workspace:packages/types"
   dependencies:

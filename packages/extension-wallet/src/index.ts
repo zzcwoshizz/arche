@@ -75,7 +75,11 @@ class ExtensionWallet extends AbstractWallet {
       const unsub = await web3AccountsSubscribe((accounts) => {
         const _accounts: Account[] = accounts.map((account) => ({
           address: account.address,
-          name: account.meta.name
+          meta: {
+            genesisHash: account.meta.genesisHash,
+            name: account.meta.name,
+            source: account.meta.source
+          }
         }));
 
         this.onAccountChange(_accounts);
@@ -124,7 +128,11 @@ class ExtensionWallet extends AbstractWallet {
 
       accounts = accountWithMeta.map((account) => ({
         address: account.address,
-        name: account.meta.name
+        meta: {
+          genesisHash: account.meta.genesisHash,
+          name: account.meta.name,
+          source: account.meta.source
+        }
       }));
     } catch (e) {
       warning(false, 'extension not enabled, falling back to call enable');

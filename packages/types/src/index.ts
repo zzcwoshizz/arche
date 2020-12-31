@@ -4,8 +4,12 @@ import type { ProviderInterface } from '@polkadot/rpc-provider/types';
 export type WalletEvents = 'enable' | 'disable' | 'error' | 'account_change';
 
 export type Account = {
-  name?: string;
   address: string;
+  meta: {
+    genesisHash?: string | null;
+    name?: string;
+    source: string;
+  };
 };
 
 export type Signer = ApiSigner;
