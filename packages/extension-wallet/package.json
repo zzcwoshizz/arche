@@ -8,8 +8,8 @@
   "dependencies": {
     "@arche-polkadot/abstract-wallet": "^0.0.4",
     "@arche-polkadot/types": "^0.0.4",
-    "@polkadot/extension-dapp": "^0.35.1",
-    "@polkadot/extension-inject": "^0.35.1",
+    "@polkadot/extension-dapp": "^0.37.2",
+    "@polkadot/extension-inject": "^0.37.2",
     "tiny-warning": "^1.0.3"
   }
 }

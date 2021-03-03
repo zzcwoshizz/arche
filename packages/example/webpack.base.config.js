@@ -19,7 +19,7 @@ function createWebpack(ENV, context) {
       new WebpackPluginServe({
         hmr: false, // switch off, Chrome WASM memory leak
         liveReload: false, // explict off, overrides hmr
-        port: 3000,
+        port: 3002,
         progress: false, // since we have hmr off, disable
         static: path.join(process.cwd(), '/build')
       })
