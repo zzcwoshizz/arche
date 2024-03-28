@@ -11,11 +11,11 @@
     "url": "https://github.com/zzcwoshizz/arche.git"
   },
   "sideEffects": false,
-  "version": "0.0.5",
+  "version": "0.1.0",
   "main": "index.js",
   "dependencies": {
-    "@arche-polkadot/abstract-wallet": "^0.0.4",
-    "@arche-polkadot/types": "^0.0.4"
+    "@arche-polkadot/abstract-wallet": "^0.1.0",
+    "@arche-polkadot/types": "^0.1.0"
   },
   "peerDependencies": {
     "react": ">=16.8",
