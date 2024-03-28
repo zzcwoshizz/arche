@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   release:
-    if: github.repository == 'zzcwoshizz/dev'
+    if: github.repository == 'zzcwoshizz/arche'
     runs-on: ubuntu-latest
     env:
       YARN_ENABLE_SCRIPTS: false
