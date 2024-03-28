@@ -1,0 +1,18 @@
+{
+  "extends": "@zzcwoshizz/dev/config/tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@arche-polkadot/abstract-wallet": ["abstract-wallet/src"],
+      "@arche-polkadot/abstract-wallet/*": ["abstract-wallet/src/*"],
+      "@arche-polkadot/extension-wallet": ["extension-wallet/src"],
+      "@arche-polkadot/extension-wallet/*": ["extension-wallet/src/*"],
+      "@arche-polkadot/types": ["types/src"],
+      "@arche-polkadot/types/*": ["types/src/*"],
+      "@arche-polkadot/react-core": ["react-core/src"],
+      "@arche-polkadot/react-core/*": ["react-core/src/*"]
+    }
+  }
+}

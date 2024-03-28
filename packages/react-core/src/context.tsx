@@ -1,16 +1,16 @@
+// Copyright 2023-2023 zc.zhang authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
 import type AbstractWallet from '@arche-polkadot/abstract-wallet';
 import type { Account, Provider, Signer } from '@arche-polkadot/types';
+
 import React from 'react';
 
 import { ArcheDispatchContext, ArcheStateContext } from './types';
 
 const craeteArchContext = () => {
-  const stateContext = React.createContext<ArcheStateContext>(
-    {} as ArcheStateContext
-  );
-  const dispatchContext = React.createContext<ArcheDispatchContext>(
-    {} as ArcheDispatchContext
-  );
+  const stateContext = React.createContext<ArcheStateContext>({} as ArcheStateContext);
+  const dispatchContext = React.createContext<ArcheDispatchContext>({} as ArcheDispatchContext);
 
   return {
     dispatchContext,
@@ -20,7 +20,7 @@ const craeteArchContext = () => {
 
 const { dispatchContext, stateContext } = craeteArchContext();
 
-const ArcheProvider: React.FunctionComponent = ({ children }) => {
+const ArcheProvider: React.FunctionComponent = ({ children }: { children?: React.ReactNode }) => {
   const [accounts, setAccounts] = React.useState<Account[]>([]);
   const [signer, setSigner] = React.useState<Signer | null>(null);
   const [provider, setProvider] = React.useState<Provider | null>(null);
@@ -40,11 +40,7 @@ const ArcheProvider: React.FunctionComponent = ({ children }) => {
     const onEnable = () => {
       setConnected(true);
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      Promise.all([
-        wallet?.getAccounts(),
-        wallet?.getSigner(),
-        wallet?.getProvider()
-      ]).then(([accounts, signer, provider]) => {
+      Promise.all([wallet?.getAccounts(), wallet?.getSigner(), wallet?.getProvider()]).then(([accounts, signer, provider]) => {
         setAccounts(accounts || []);
         setSigner(signer || null);
         setProvider(provider || null);
@@ -84,12 +80,8 @@ const ArcheProvider: React.FunctionComponent = ({ children }) => {
   }, [wallet]);
 
   return (
-    <stateContext.Provider
-      value={{ accounts, connected, provider, signer, wallet }}
-    >
-      <dispatchContext.Provider value={{ connect, disconnect }}>
-        {children}
-      </dispatchContext.Provider>
+    <stateContext.Provider value={{ accounts, connected, provider, signer, wallet }}>
+      <dispatchContext.Provider value={{ connect, disconnect }}>{children}</dispatchContext.Provider>
     </stateContext.Provider>
   );
 };

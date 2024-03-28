@@ -1,4 +1,7 @@
-import type { Account, Signer, Provider } from '@arche-polkadot/types';
+// Copyright 2023-2023 zc.zhang authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+import type { Account, Provider, Signer } from '@arche-polkadot/types';
 
 import Events from './Events';
 

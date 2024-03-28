@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "..",
+    "outDir": "./build",
+    "rootDir": "./src"
+  },
+  "exclude": [
+    "**/mod.ts"
+  ],
+  "references": [
+    { "path": "../abstract-wallet/tsconfig.build.json" },
+    { "path": "../types/tsconfig.build.json" }
+  ]
+}

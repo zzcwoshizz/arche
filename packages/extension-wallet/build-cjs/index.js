@@ -1,14 +1,15 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _abstractWallet = _interopRequireDefault(require("@arche-polkadot/abstract-wallet"));
+var _extensionDapp = require("@polkadot/extension-dapp");
+var _tinyWarning = _interopRequireDefault(require("tiny-warning"));
 // Copyright 2023-2023 zc.zhang authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-import type { Account, Provider, Signer } from '@arche-polkadot/types';
-import type { InjectedExtension } from '@polkadot/extension-inject/types';
-
-import AbstractWallet from '@arche-polkadot/abstract-wallet';
-import { web3Accounts, web3AccountsSubscribe, web3Enable, web3EnablePromise } from '@polkadot/extension-dapp';
-import warning from 'tiny-warning';
-
-export type UnSub = () => void;
 
 class NotInstallError extends Error {
   constructor() {
@@ -17,62 +18,52 @@ class NotInstallError extends Error {
     this.name = 'NotInstallError';
   }
 }
-
-class ExtensionWallet extends AbstractWallet {
+class ExtensionWallet extends _abstractWallet.default {
   #enabled = false;
-  #originName: string;
-  #signer: Signer | null = null;
-  #provier: Provider | null = null;
+  #originName;
+  #signer = null;
+  #provier = null;
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  #unsub: () => any = () => {};
-
-  constructor(originName: string) {
+  #unsub = () => {};
+  constructor(originName) {
     super();
     this.#originName = originName;
   }
-
-  get enabled(): boolean {
+  get enabled() {
     return this.#enabled;
   }
 
   /**
    * is browser install extension [https://polkadot.js.org/extension/](https://polkadot.js.org/extension/)
    */
-  get isInjected(): boolean {
+  get isInjected() {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    return Object.keys((window as unknown as any).injectedWeb3).length !== 0;
+    return Object.keys(window.injectedWeb3).length !== 0;
   }
 
   /**
    * get InjectedExtension
    */
-  get injectedExtensions(): Promise<InjectedExtension[]> | null {
-    return web3EnablePromise;
+  get injectedExtensions() {
+    return _extensionDapp.web3EnablePromise;
   }
-
-  get originName(): string {
+  get originName() {
     return this.#originName;
   }
-
-  public async enable(): Promise<void> {
+  async enable() {
     if (this.#enabled) {
       return;
     }
-
     const injected = this.isInjected;
-
     if (!injected) {
-      warning(false, 'Not install extension');
-
+      (0, _tinyWarning.default)(false, 'Not install extension');
       this.onError(new NotInstallError());
       throw new NotInstallError();
     }
-
     try {
-      const injected = await web3Enable(this.#originName);
-
-      const unsub = await web3AccountsSubscribe((accounts) => {
-        const _accounts: Account[] = accounts.map((account) => ({
+      const injected = await (0, _extensionDapp.web3Enable)(this.#originName);
+      const unsub = await (0, _extensionDapp.web3AccountsSubscribe)(accounts => {
+        const _accounts = accounts.map(account => ({
           address: account.address,
           meta: {
             genesisHash: account.meta.genesisHash,
@@ -80,52 +71,35 @@ class ExtensionWallet extends AbstractWallet {
             source: account.meta.source
           }
         }));
-
         this.onAccountChange(_accounts);
       });
-
       this.#unsub = unsub;
-
       this.#signer = injected[0].signer;
-
       this.#provier = injected[0].provider || null;
-
       this.#enabled = true;
-
       this.onEnable();
-    } catch (error: any) {
-      warning(false, (error as Error).message);
+    } catch (error) {
+      (0, _tinyWarning.default)(false, error.message);
       this.onError(error);
     }
   }
-
-  public async disable(): Promise<void> {
+  async disable() {
     this.#enabled = false;
-
     this.#signer = null;
-
     this.#unsub();
-
     this.onDisable();
-
     await Promise.resolve();
   }
-
-  public async getAccounts(): Promise<Account[]> {
+  async getAccounts() {
     const injected = this.isInjected;
-
     if (!injected) {
-      warning(false, 'Not install extension');
-
+      (0, _tinyWarning.default)(false, 'Not install extension');
       return [];
     }
-
-    let accounts: Account[] = [];
-
+    let accounts = [];
     try {
-      const accountWithMeta = await web3Accounts();
-
-      accounts = accountWithMeta.map((account) => ({
+      const accountWithMeta = await (0, _extensionDapp.web3Accounts)();
+      accounts = accountWithMeta.map(account => ({
         address: account.address,
         meta: {
           genesisHash: account.meta.genesisHash,
@@ -134,39 +108,29 @@ class ExtensionWallet extends AbstractWallet {
         }
       }));
     } catch (e) {
-      warning(false, 'extension not enabled, falling back to call enable');
+      (0, _tinyWarning.default)(false, 'extension not enabled, falling back to call enable');
     }
-
     return accounts;
   }
-
-  public async getSigner(): Promise<Signer | null> {
+  async getSigner() {
     await Promise.resolve();
-
     return this.#signer;
   }
-
-  public async getProvider(): Promise<Provider | null> {
+  async getProvider() {
     await Promise.resolve();
-
     return this.#provier;
   }
-
-  protected onError(error: Error): void {
+  onError(error) {
     this.emit('error', error);
   }
-
-  protected onEnable(...args: any[]): void {
+  onEnable(...args) {
     this.emit('enable', ...args);
   }
-
-  protected onDisable(...args: any[]): void {
+  onDisable(...args) {
     this.emit('disable', ...args);
   }
-
-  protected onAccountChange(accounts: Account[]): void {
+  onAccountChange(accounts) {
     this.emit('account_change', accounts);
   }
 }
-
-export default ExtensionWallet;
+var _default = exports.default = ExtensionWallet;

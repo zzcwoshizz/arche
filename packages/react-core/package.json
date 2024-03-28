@@ -1,10 +1,18 @@
 {
-  "name": "@arche-polkadot/react-core",
-  "version": "0.0.5",
+  "author": "zc.zhang",
+  "bugs": "https://github.com/zzcwoshizz/arche/issues",
   "description": "A wallet base on polkadot",
+  "homepage": "https://github.com/zzcwoshizz/arche",
+  "license": "Apache-2.0",
+  "name": "@arche-polkadot/react-core",
+  "repository": {
+    "directory": "packages/react-core",
+    "type": "git",
+    "url": "https://github.com/zzcwoshizz/arche.git"
+  },
+  "sideEffects": false,
+  "version": "0.0.5",
   "main": "index.js",
-  "author": "Patract Labs",
-  "license": "MIT",
   "dependencies": {
     "@arche-polkadot/abstract-wallet": "^0.0.4",
     "@arche-polkadot/types": "^0.0.4"
