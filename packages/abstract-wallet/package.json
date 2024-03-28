@@ -11,10 +11,10 @@
     "url": "https://github.com/zzcwoshizz/arche.git"
   },
   "sideEffects": false,
-  "version": "0.0.4",
+  "version": "0.1.0",
   "main": "index.js",
   "dependencies": {
-    "@arche-polkadot/types": "^0.0.4",
+    "@arche-polkadot/types": "^0.1.0",
     "eventemitter3": "^4.0.7"
   }
 }
