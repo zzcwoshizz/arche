@@ -2,7 +2,7 @@
   "author": "zc.zhang",
   "bugs": "https://github.com/zzcwoshizz/arche/issues",
   "description": "A wallet base on z",
-  "homepage": "https://github.com/zzcwoshizz/arche",
+  "homepage": "https://github.com/zzcwoshizz/arche#readme",
   "keywords": [
     "z",
     "wallet",
@@ -13,7 +13,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/zzcwoshizz/arche.git"
+    "url": "https://github.com/zzcwoshizz/arche"
   },
   "sideEffects": false,
   "version": "0.0.0",
@@ -35,7 +35,7 @@
   "devDependencies": {
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@zzcwoshizz/dev": "^1.0.1",
+    "@zzcwoshizz/dev": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^3.0.2",
@@ -46,5 +46,6 @@
   },
   "resolutions": {
     "typescript": "^5.4.3"
-  }
+  },
+  "packageManager": "yarn@4.1.1"
 }

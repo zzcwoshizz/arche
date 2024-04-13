@@ -2,13 +2,12 @@
   "author": "zc.zhang",
   "bugs": "https://github.com/zzcwoshizz/arche/issues",
   "description": "A wallet base on polkadot",
-  "homepage": "https://github.com/zzcwoshizz/arche",
+  "homepage": "https://github.com/zzcwoshizz/arche#readme",
   "license": "Apache-2.0",
   "name": "@arche-polkadot/types",
   "repository": {
-    "directory": "packages/types",
     "type": "git",
-    "url": "https://github.com/zzcwoshizz/arche.git"
+    "url": "https://github.com/zzcwoshizz/arche"
   },
   "sideEffects": false,
   "version": "0.2.0",
@@ -16,7 +15,7 @@
   "dependencies": {
     "@polkadot/api": "^10.12.4",
     "@polkadot/rpc-provider": "^10.12.4",
-    "@zzcwoshizz/dev": "^1.0.2",
+    "@zzcwoshizz/dev": "^1.1.0",
     "@zzcwoshizz/lint": "^1.0.2"
   }
 }
