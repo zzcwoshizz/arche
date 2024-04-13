@@ -10,7 +10,7 @@
     "url": "https://github.com/zzcwoshizz/arche"
   },
   "sideEffects": false,
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "index.js",
   "dependencies": {
     "@polkadot/api": "^10.12.4",
