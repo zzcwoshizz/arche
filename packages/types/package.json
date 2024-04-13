@@ -15,6 +15,8 @@
   "main": "index.js",
   "dependencies": {
     "@polkadot/api": "^10.12.4",
-    "@polkadot/rpc-provider": "^10.12.4"
+    "@polkadot/rpc-provider": "^10.12.4",
+    "@zzcwoshizz/dev": "^1.0.2",
+    "@zzcwoshizz/lint": "^1.0.2"
   }
 }

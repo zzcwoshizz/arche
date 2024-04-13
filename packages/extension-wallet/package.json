@@ -18,6 +18,8 @@
     "@arche-polkadot/types": "^0.1.0",
     "@polkadot/extension-dapp": "^0.46.9",
     "@polkadot/extension-inject": "^0.46.9",
+    "@zzcwoshizz/dev": "^1.0.2",
+    "@zzcwoshizz/lint": "^1.0.2",
     "tiny-warning": "^1.0.3"
   }
 }

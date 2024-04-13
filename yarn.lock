@@ -27,6 +27,8 @@ __metadata:
   resolution: "@arche-polkadot/abstract-wallet@workspace:packages/abstract-wallet"
   dependencies:
     "@arche-polkadot/types": "npm:^0.1.0"
+    "@zzcwoshizz/dev": "npm:^1.0.2"
+    "@zzcwoshizz/lint": "npm:^1.0.2"
     eventemitter3: "npm:^4.0.7"
   languageName: unknown
   linkType: soft
@@ -39,6 +41,8 @@ __metadata:
     "@arche-polkadot/types": "npm:^0.1.0"
     "@polkadot/extension-dapp": "npm:^0.46.9"
     "@polkadot/extension-inject": "npm:^0.46.9"
+    "@zzcwoshizz/dev": "npm:^1.0.2"
+    "@zzcwoshizz/lint": "npm:^1.0.2"
     tiny-warning: "npm:^1.0.3"
   languageName: unknown
   linkType: soft
@@ -49,6 +53,8 @@ __metadata:
   dependencies:
     "@arche-polkadot/abstract-wallet": "npm:^0.1.0"
     "@arche-polkadot/types": "npm:^0.1.0"
+    "@zzcwoshizz/dev": "npm:^1.0.2"
+    "@zzcwoshizz/lint": "npm:^1.0.2"
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
@@ -61,6 +67,8 @@ __metadata:
   dependencies:
     "@polkadot/api": "npm:^10.12.4"
     "@polkadot/rpc-provider": "npm:^10.12.4"
+    "@zzcwoshizz/dev": "npm:^1.0.2"
+    "@zzcwoshizz/lint": "npm:^1.0.2"
   languageName: unknown
   linkType: soft
 
@@ -4179,9 +4187,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zzcwoshizz/dev@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@zzcwoshizz/dev@npm:1.0.1"
+"@zzcwoshizz/dev@npm:^1.0.1, @zzcwoshizz/dev@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@zzcwoshizz/dev@npm:1.0.2"
   dependencies:
     "@babel/cli": "npm:^7.21.0"
     "@babel/core": "npm:^7.21.3"
@@ -4207,7 +4215,7 @@ __metadata:
     "@rushstack/eslint-patch": "npm:^1.2.0"
     "@typescript-eslint/eslint-plugin": "npm:^5.55.0"
     "@typescript-eslint/parser": "npm:^5.55.0"
-    "@zzcwoshizz/lint": "npm:1.0.1"
+    "@zzcwoshizz/lint": "npm:1.0.2"
     babel-jest: "npm:^29.5.0"
     babel-plugin-module-extension-resolver: "npm:^1.0.0"
     babel-plugin-module-resolver: "npm:^5.0.0"
@@ -4274,19 +4282,19 @@ __metadata:
     z-exec-prettier: scripts/z-exec-prettier.mjs
     z-exec-tsc: scripts/z-exec-tsc.mjs
     z-exec-webpack: scripts/z-exec-webpack.mjs
-  checksum: 10/9c38c63ba9dc9f79fbda0443c0e5aeb3d1713e7cdf34214f07929fd89c49024680815e37b83bae84d7ba284f9e2563aece0e3149f74e9b6380b718b2950cca72
+  checksum: 10/e5c4787076da569784a86bcc6d19782f281a7884abf62ac7eb8293fb29495507629aa4e1a871c691d3cf104a36fb5e3aaf2097cfe49d63e7f5171aab30245cb7
   languageName: node
   linkType: hard
 
-"@zzcwoshizz/lint@npm:1.0.1":
-  version: 1.0.1
-  resolution: "@zzcwoshizz/lint@npm:1.0.1"
+"@zzcwoshizz/lint@npm:1.0.2, @zzcwoshizz/lint@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@zzcwoshizz/lint@npm:1.0.2"
   dependencies:
     chalk: "npm:^5.2.0"
     glob: "npm:^9.3.0"
     parse-imports-ts: "npm:^1.0.3"
     throat: "npm:^6.0.2"
-  checksum: 10/fe7083e7887c43f6f3c50d32cd4326ac86fc62ad8e3503a87d8b9c8ba9628cb8cde21686436c2cca86d8729945afd23ece76f02862178fd3f93f751ab1507014
+  checksum: 10/1a5b977cac2181d6dd3a115be628df16501ee1f2c9b2a0554f5de21db45c272e26fa953d8aa0d01b35a8ad29a4fa937e5636595449aad97f66a260a183f50fa4
   languageName: node
   linkType: hard
 

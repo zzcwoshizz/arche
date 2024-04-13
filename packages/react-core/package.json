@@ -15,7 +15,9 @@
   "main": "index.js",
   "dependencies": {
     "@arche-polkadot/abstract-wallet": "^0.1.0",
-    "@arche-polkadot/types": "^0.1.0"
+    "@arche-polkadot/types": "^0.1.0",
+    "@zzcwoshizz/dev": "^1.0.2",
+    "@zzcwoshizz/lint": "^1.0.2"
   },
   "peerDependencies": {
     "react": ">=16.8",
