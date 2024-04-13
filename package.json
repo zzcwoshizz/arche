@@ -10,6 +10,7 @@
   ],
   "license": "Apache-2.0",
   "name": "arche",
+  "packageManager": "yarn@4.1.1",
   "private": true,
   "repository": {
     "type": "git",
@@ -46,6 +47,5 @@
   },
   "resolutions": {
     "typescript": "^5.4.3"
-  },
-  "packageManager": "yarn@4.1.1"
+  }
 }
